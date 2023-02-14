@@ -26,9 +26,10 @@ jobs:
     steps:
       - name: Configure Environment
         run: echo "$GITHUB_WORKSPACE/llvm-project/prefix/bin" >> "$GITHUB_PATH"
+      - name: Apt update
+        run: DEBIAN_FRONTEND=noninteractive apt-get update
       - name: Update clang
-        run: DEBIAN_FRONTEND=noninteractive apt-get update && \
-             DEBIAN_FRONTEND=noninteractive apt-get install clang-15 lld-15
+        run: sudo DEBIAN_FRONTEND=noninteractive apt-get install clang-15 lld-15
       - name: Get Template Code
         uses: actions/checkout@v2
         with:
